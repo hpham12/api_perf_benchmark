@@ -17,6 +17,10 @@ public class Main {
         startTime = System.currentTimeMillis();
         makeRequestsParallelSync(5);
         System.out.printf("Time take to make requests parallel sync: %s\n", System.currentTimeMillis() - startTime);
+
+        startTime = System.currentTimeMillis();
+        makeRequestsParallelAsync(5);
+        System.out.printf("Time take to make requests parallel async: %s\n", System.currentTimeMillis() - startTime);
     }
 
 
@@ -25,6 +29,14 @@ public class Main {
         var res = sequentialRequester.makeRequest(requests);
         if (res.size() != requests) {
             System.out.println("Error occurred while making requests sequentially");
+        }
+    }
+
+    public static void makeRequestsParallelAsync(int requests) {
+        Requester parallelAsyncRequester = new ParallelAsync();
+        var res = parallelAsyncRequester.makeRequest(requests);
+        if (res.size() != requests) {
+            System.out.println("Error occurred while making requests parallel async");
         }
     }
 

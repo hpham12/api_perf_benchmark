@@ -15,7 +15,7 @@ public class ParallelSync implements Requester {
             int finalI = i;
             threadPool.submit(() -> {
                 try {
-                    SynchronousClient.makeApiCall(finalI);
+                    Client.makeApiCall(finalI);
                 } catch (URISyntaxException | IOException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -39,5 +39,4 @@ public class ParallelSync implements Requester {
     private static ExecutorService createNewThreadPool(int nThreads) {
         return Executors.newFixedThreadPool(nThreads);
     }
-
 }

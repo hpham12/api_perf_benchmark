@@ -9,7 +9,7 @@ public class Sequential implements Requester {
         List<Server.ApiResponse> responses = new ArrayList<>();
         for (int i = 0; i < numberOfRequests; i++) {
             try {
-                var res = SynchronousClient.makeApiCall(i);
+                var res = Client.makeApiCall(i);
                 responses.add(res);
             } catch (Exception e) {
                 System.out.printf("Error occurred when calling API with id %d\n", i);
